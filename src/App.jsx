@@ -316,12 +316,12 @@ export default function App() {
         {/* DATA DISPLAY UNDER ROAD (Fixed to screen) */}
         <div
           className="absolute w-full px-6 md:px-12 pointer-events-none"
-          style={{ top: GROUND_Y + 60 }} // Lifted up slightly for small screens
+          style={{ top: GROUND_Y + 25 }} // Lifted up strictly to 25px for small screens
         >
           <div className="relative max-w-7xl mx-auto">
             {visualState.active ? (
               <div className="animate-in fade-in duration-700">
-                <div className="flex items-end gap-3 md:gap-6 mb-2 md:mb-3">
+                <div className="flex items-end gap-3 md:gap-6 mb-1 md:mb-3">
                   {/* Changed from text-3xl to text-xl for mobile screens */}
                   <h2
                     className="text-xl md:text-6xl font-black italic uppercase tracking-tighter leading-none transition-all duration-1000"
@@ -335,9 +335,10 @@ export default function App() {
                   <div className="h-px flex-1 bg-white/10 mb-1 md:mb-2" />
                 </div>
 
-                <div className="flex flex-col md:flex-row md:flex-wrap items-start md:items-baseline gap-x-12 gap-y-2 md:gap-y-4 pt-2">
+                {/* TIGHTENED GAPS on Mobile (gap-y-1 instead of gap-y-2) */}
+                <div className="flex flex-col md:flex-row md:flex-wrap items-start md:items-baseline gap-x-12 gap-y-1 md:gap-y-4 pt-1">
                   {visualState.active.type === "school" ? (
-                    <div className="flex flex-col gap-3 md:gap-4 max-w-full md:max-w-4xl">
+                    <div className="flex flex-col gap-1.5 md:gap-4 max-w-full md:max-w-4xl">
                       {/* Changed from text-xl to text-sm for mobile screens */}
                       <span
                         className="text-sm md:text-3xl font-black font-mono tracking-tighter transition-all duration-1000 uppercase"
@@ -350,12 +351,12 @@ export default function App() {
                       </span>
 
                       {visualState.active.details.description && (
-                        <p className="text-xs md:text-sm font-medium text-white/70 leading-relaxed">
+                        <p className="text-[10px] md:text-sm font-medium text-white/70 leading-tight md:leading-relaxed">
                           {visualState.active.details.description}
                         </p>
                       )}
 
-                      <div className="flex flex-wrap gap-3 md:gap-8 mt-1">
+                      <div className="flex flex-wrap gap-2 md:gap-8 mt-1">
                         {visualState.active.details.highlights.map((h, i) => (
                           <span
                             key={i}
@@ -374,9 +375,10 @@ export default function App() {
                     </div>
                   ) : (
                     <>
-                      <div className="flex flex-col gap-3 max-w-full md:max-w-4xl">
+                      {/* TIGHTENED GAPS on Mobile */}
+                      <div className="flex flex-col gap-1.5 md:gap-3 max-w-full md:max-w-4xl">
                         {/* Replaced the large glowing text with the school description style */}
-                        <p className="text-xs md:text-sm font-medium text-white/70 leading-relaxed">
+                        <p className="text-[10px] md:text-sm font-medium text-white/70 leading-tight md:leading-relaxed">
                           {visualState.active.details.description}
                         </p>
 
