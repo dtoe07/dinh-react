@@ -287,15 +287,20 @@ export default function App() {
                     style={{ borderColor: asset.themeColor }}
                   >
                     <div className="relative group">
+                      {/* Hide the heavy gaussian blur on mobile (md:block hidden) */}
                       <div
-                        className="absolute inset-0 blur-2xl opacity-40"
+                        className="absolute inset-0 blur-xl opacity-40 hidden md:block"
                         style={{ backgroundColor: asset.themeColor }}
                       />
                       <IconComp
                         className="w-10 h-10 md:w-16 md:h-16 relative z-10"
                         style={{
                           color: asset.themeColor,
-                          filter: `drop-shadow(0 0 8px ${asset.themeColor})`,
+                          // Use a simpler filter for mobile, or remove entirely for small screens
+                          filter:
+                            window.innerWidth > 768
+                              ? `drop-shadow(0 0 8px ${asset.themeColor})`
+                              : "none",
                         }}
                       />
                     </div>

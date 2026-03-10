@@ -6,10 +6,9 @@ export default function Player({ x, y, isJumping, activeColor }) {
 
   return (
     <div
-      className="absolute bottom-0 transition-transform duration-75"
+      className="absolute bottom-0 will-change-transform"
       style={{
-        left: x,
-        bottom: window.innerHeight - y,
+        transform: `translate(${x}px, -${window.innerHeight - y}px)`,
         width: PLAYER_WIDTH,
         height: PLAYER_HEIGHT,
       }}
