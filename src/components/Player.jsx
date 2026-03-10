@@ -1,14 +1,13 @@
 import { PLAYER_WIDTH, PLAYER_HEIGHT } from "../config/physics";
 
 export default function Player({ x, y, isJumping, activeColor, isFinished }) {
-  // Use the active color, or default to the emerald green if no obstacle is active
   const themeColor = activeColor || "rgb(16,185,129)";
 
   return (
     <div
-      className="absolute bottom-0 will-change-transform z-50 flex items-center justify-center"
+      className="absolute top-0 will-change-transform z-50 flex items-center justify-center"
       style={{
-        transform: `translate(${x}px, -${window.innerHeight - y}px)`,
+        transform: `translate(${x}px, ${y - PLAYER_HEIGHT}px)`,
         width: PLAYER_WIDTH,
         height: PLAYER_HEIGHT,
       }}
