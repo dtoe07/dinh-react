@@ -273,7 +273,7 @@ export default function App() {
                   className="absolute transition-all duration-500"
                   style={{
                     left: asset.x,
-                    bottom: window.innerHeight - GROUND_Y,
+                    top: GROUND_Y - asset.height, // Changed from bottom: window.innerHeight - GROUND_Y
                     width: asset.width,
                     height: asset.height,
                   }}
