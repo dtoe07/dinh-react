@@ -13,7 +13,8 @@ import {
   PLAYER_WIDTH,
 } from "./config/physics";
 import { ASSETS } from "./data/assets";
-import { ArrowLeft, ArrowRight, ArrowUp, Github } from "lucide-react"; // Added Github import
+import { ArrowLeft, ArrowRight, ArrowUp, Github, Globe } from "lucide-react";
+import { playJumpSound } from "./utils/audio"; // <-- 1. Import your new audio utility
 
 export default function App() {
   const stateRef = useRef({
@@ -154,6 +155,15 @@ export default function App() {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
+      // Direct user action -> Browser allows audio!
+      if (
+        ["Space", "ArrowUp", "KeyW"].includes(e.code) &&
+        !stateRef.current.isJumping &&
+        !stateRef.current.keys[e.code] // Prevent holding down key from spamming sound
+      ) {
+        playJumpSound();
+      }
+
       stateRef.current.keys[e.code] = true;
     };
 
@@ -574,10 +584,26 @@ export default function App() {
             <ArrowRight className="w-8 h-8" />
           </button>
         </div>
+
+        {/* --- NEW OFFICIAL SITE BUTTON --- */}
+        <button
+          className="h-16 px-5 bg-white/10 active:bg-white/30 backdrop-blur-md rounded-full border border-white/20 flex items-center justify-center gap-2 text-white/70 transition-all duration-300 hover:border-orange-500 hover:text-orange-400 hover:shadow-[0_0_20px_rgba(249,115,22,0.8)] hover:bg-orange-500/10 active:shadow-[0_0_30px_rgba(249,115,22,1)]"
+          onClick={(e) => {
+            e.preventDefault();
+            window.location.href = "https://dtoe07.github.io/";
+          }}
+        >
+          <Globe className="w-5 h-5" />
+          <span className="text-[10px] font-black uppercase tracking-widest mt-0.5">
+            Go Home
+          </span>
+        </button>
+
         <button
           className="w-16 h-16 bg-indigo-500/20 active:bg-indigo-500/50 backdrop-blur-md rounded-full border border-indigo-500/50 flex items-center justify-center text-indigo-300 shadow-[0_0_15px_rgba(99,102,241,0.3)]"
           onPointerDown={(e) => {
             e.preventDefault();
+            if (!stateRef.current.isJumping) playJumpSound(); // Direct user action -> Browser allows audio!
             setKey("Space", true);
           }}
           onPointerUp={(e) => {

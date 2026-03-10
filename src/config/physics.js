@@ -8,5 +8,6 @@ export const SCROLL_THRESHOLD = window.innerWidth / 3;
 export const PLAYER_WIDTH = 48;
 export const PLAYER_HEIGHT = 48;
 
-export const MOVEMENT_SPEED = 6;
+// Decreased from 6 to slow down horizontal movement
+export const MOVEMENT_SPEED = 4.5;
 export const WORLD_WIDTH = 5000;
