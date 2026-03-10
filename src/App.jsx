@@ -29,6 +29,7 @@ export default function App() {
     playerScreenX: PLAYER_START_X,
     y: GROUND_Y,
     active: null,
+    progress: 0, // Add this to track percentage
   });
 
   const gameLoopRef = useRef();
@@ -111,12 +112,24 @@ export default function App() {
       screenX = SCROLL_THRESHOLD; // Player stays fixed
     }
 
+    // Calculate completion percentage with offset
+    const currentProgress = Math.min(
+      100,
+      Math.max(
+        0,
+        Math.round(
+          ((s.worldX - PLAYER_START_X) / (WORLD_WIDTH - PLAYER_START_X)) * 100
+        )
+      )
+    );
+
     setVisualState({
       x: cameraX,
       playerScreenX: screenX,
       y: s.playerY,
       isJumping: s.isJumping,
       active: currentAsset,
+      progress: currentProgress, // Store it in state
     });
 
     gameLoopRef.current = requestAnimationFrame(update);
@@ -435,6 +448,25 @@ export default function App() {
             Portfolio
           </span>
         </h1>
+      </div>
+
+      {/* WORLD PROGRESS TRACKER (Top Right) */}
+      <div className="absolute top-8 right-6 md:right-12 z-[100] pointer-events-none">
+        <h2
+          className="text-lg md:text-2xl font-black font-mono italic tracking-widest transition-all duration-1000"
+          style={{
+            color: visualState.active
+              ? visualState.active.themeColor
+              : "#f97316",
+            textShadow: `0 0 12px ${
+              visualState.active
+                ? visualState.active.themeColor
+                : "rgba(249, 115, 22, 0.5)"
+            }`,
+          }}
+        >
+          {visualState.progress}%
+        </h2>
       </div>
 
       {/* MOBILE TOUCH CONTROLS (Hidden on large screens, perfectly bottom-aligned) */}
