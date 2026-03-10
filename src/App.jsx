@@ -331,10 +331,10 @@ export default function App() {
             >
               {/* THE GLOWING PENNANT (FLAG) */}
               <div
-                className="absolute top-2 left-1.5 w-20 h-10 bg-yellow-400"
+                className="absolute top-2 left-1.5 w-20 h-10 bg-orange-500"
                 style={{
                   boxShadow:
-                    "0 0 25px rgba(250, 204, 21, 0.9), inset 0 0 8px rgba(255,255,255,0.8)",
+                    "0 0 25px rgba(249, 115, 22, 0.9), inset 0 0 8px rgba(255,255,255,0.8)",
                   clipPath: "polygon(0 0, 100% 0, 75% 50%, 100% 100%, 0 100%)", // Creates a cool cutout shape
                 }}
               />
