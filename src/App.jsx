@@ -387,7 +387,8 @@ export default function App() {
 
                 {/* TIGHTENED GAPS on Mobile (gap-y-1 instead of gap-y-2) */}
                 <div className="flex flex-col md:flex-row md:flex-wrap items-start md:items-baseline gap-x-12 gap-y-1 md:gap-y-4 pt-1">
-                  {visualState.active.type === "school" ? (
+                  {visualState.active.type === "school" ||
+                  visualState.active.type === "work" ? (
                     <div className="flex flex-col gap-1.5 md:gap-4 max-w-full md:max-w-4xl">
                       {/* Changed from text-xl to text-sm for mobile screens */}
                       <span

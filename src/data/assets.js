@@ -83,7 +83,7 @@ export const ASSETS = [
   },
   {
     id: "work1",
-    type: "school", // Using 'school' type so your App.jsx formats the Title, Description, and Highlights properly!
+    type: "work", // Changed from 'school' to 'work'
     name: "Providence Health & Services",
     icon: Briefcase,
     x: 3900,
