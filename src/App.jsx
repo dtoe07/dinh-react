@@ -322,8 +322,9 @@ export default function App() {
             {visualState.active ? (
               <div className="animate-in fade-in duration-700">
                 <div className="flex items-end gap-3 md:gap-6 mb-2 md:mb-3">
+                  {/* Changed from text-3xl to text-xl for mobile screens */}
                   <h2
-                    className="text-3xl md:text-6xl font-black italic uppercase tracking-tighter leading-none transition-all duration-1000"
+                    className="text-xl md:text-6xl font-black italic uppercase tracking-tighter leading-none transition-all duration-1000"
                     style={{
                       color: "white",
                       textShadow: `0 0 15px ${visualState.active.themeColor}, 0 0 30px ${visualState.active.themeColor}`,
@@ -337,8 +338,9 @@ export default function App() {
                 <div className="flex flex-col md:flex-row md:flex-wrap items-start md:items-baseline gap-x-12 gap-y-2 md:gap-y-4 pt-2">
                   {visualState.active.type === "school" ? (
                     <div className="flex flex-col gap-3 md:gap-4 max-w-full md:max-w-4xl">
+                      {/* Changed from text-xl to text-sm for mobile screens */}
                       <span
-                        className="text-xl md:text-3xl font-black font-mono tracking-tighter transition-all duration-1000 uppercase"
+                        className="text-sm md:text-3xl font-black font-mono tracking-tighter transition-all duration-1000 uppercase"
                         style={{
                           color: visualState.active.themeColor,
                           textShadow: `0 0 10px ${visualState.active.themeColor}`,
@@ -347,7 +349,6 @@ export default function App() {
                         {visualState.active.details.degree}
                       </span>
 
-                      {/* ADD THIS NEW DESCRIPTION BLOCK */}
                       {visualState.active.details.description && (
                         <p className="text-xs md:text-sm font-medium text-white/70 leading-relaxed">
                           {visualState.active.details.description}
@@ -374,17 +375,11 @@ export default function App() {
                   ) : (
                     <>
                       <div className="flex flex-col gap-3 max-w-full md:max-w-4xl">
-                        <span
-                          className="text-lg md:text-3xl font-bold font-mono tracking-tighter transition-all duration-1000 leading-tight"
-                          style={{
-                            color: visualState.active.themeColor,
-                            textShadow: `0 0 8px ${visualState.active.themeColor}`,
-                          }}
-                        >
+                        {/* Replaced the large glowing text with the school description style */}
+                        <p className="text-xs md:text-sm font-medium text-white/70 leading-relaxed">
                           {visualState.active.details.description}
-                        </span>
+                        </p>
 
-                        {/* GITHUB LINK BUTTON */}
                         {visualState.active.details.github && (
                           <a
                             href={visualState.active.details.github}
