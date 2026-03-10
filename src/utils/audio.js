@@ -1,4 +1,4 @@
-import jumpSfx from "../assets/jump.mp3";
+import jumpSfx from "../assets/jump.wav";
 
 // 1. Create the Web Audio API Context (with fallback for Safari)
 const AudioContext = window.AudioContext || window.webkitAudioContext;
