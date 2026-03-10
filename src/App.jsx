@@ -17,11 +17,12 @@ import { ArrowLeft, ArrowRight, ArrowUp, Github } from "lucide-react"; // Added 
 
 export default function App() {
   const stateRef = useRef({
-    worldX: PLAYER_START_X, // Now starts at 200
+    worldX: PLAYER_START_X,
     playerY: GROUND_Y,
     velY: 0,
     isJumping: false,
     keys: {},
+    lastTime: 0, // <-- Add this to track the physics frame time!
   });
 
   const [visualState, setVisualState] = useState({
@@ -34,21 +35,37 @@ export default function App() {
 
   const gameLoopRef = useRef();
 
-  const update = useCallback(() => {
+  // ADD 'time' argument here!
+  const update = useCallback((time) => {
     const s = stateRef.current;
 
-    s.velY += GRAVITY;
+    // --- ADD DELTA TIME FIX ---
+    if (!s.lastTime) s.lastTime = time;
+    let dt = time - s.lastTime;
+    s.lastTime = time;
+
+    // Cap delta time to prevent physics glitches if you switch browser tabs/apps
+    if (dt > 100) dt = 16.66;
+
+    // Based on typical fast desktop monitors (120Hz = 8.33ms per frame).
+    // This multiplier will be 1 on desktop, but ~2 on 60Hz phones, instantly bringing mobile up to desktop speeds!
+    const timeScale = dt / 8.33;
+    // --------------------------
+
+    s.velY += GRAVITY * timeScale; // Apply timescale to gravity
     if (
       (s.keys["Space"] || s.keys["ArrowUp"] || s.keys["KeyW"]) &&
       !s.isJumping
     ) {
-      s.velY = JUMP_FORCE;
+      s.velY = JUMP_FORCE; // Jump burst is instant, doesn't need scaling
       s.isJumping = true;
     }
 
     let nextWorldX = s.worldX;
-    if (s.keys["ArrowRight"] || s.keys["KeyD"]) nextWorldX += MOVEMENT_SPEED;
-    if (s.keys["ArrowLeft"] || s.keys["KeyA"]) nextWorldX -= MOVEMENT_SPEED;
+    const currentSpeed = MOVEMENT_SPEED * timeScale; // Apply timescale to movement
+
+    if (s.keys["ArrowRight"] || s.keys["KeyD"]) nextWorldX += currentSpeed;
+    if (s.keys["ArrowLeft"] || s.keys["KeyA"]) nextWorldX -= currentSpeed;
 
     // Prevent walking out of bounds
     nextWorldX = Math.max(PLAYER_START_X, Math.min(nextWorldX, WORLD_WIDTH));
@@ -56,7 +73,7 @@ export default function App() {
     // Collision Detection Logic
     const playerLeft = nextWorldX; // player is just at nextWorldX
     const playerRight = playerLeft + PLAYER_WIDTH;
-    const nextFeetY = s.playerY + s.velY;
+    const nextFeetY = s.playerY + s.velY * timeScale; // Apply timescale to positional falling/jumping
     const prevFeetY = s.playerY;
 
     let blocked = false;
@@ -180,7 +197,8 @@ export default function App() {
         {/* INSPIRATIONAL QUOTE OVERLAY (Inside wrapper so player is in front, but counter-translates to stay safely below the site title!) */}
         <div className="absolute top-24 md:top-28 left-1/2 w-[85%] md:w-[60%] max-w-4xl -translate-x-1/2 text-center pointer-events-none flex flex-col gap-1 md:gap-2 z-0 transition-transform duration-500 translate-y-[20vh] md:translate-y-0">
           <h3
-            className="text-[8px] md:text-sm lg:text-lg font-black font-mono uppercase tracking-widest leading-normal transition-all duration-1000 opacity-20 md:opacity-30"
+            // Changed opacity-20 md:opacity-30 to opacity-70 md:opacity-90 for high readability
+            className="text-[8px] md:text-sm lg:text-lg font-black font-mono uppercase tracking-widest leading-normal transition-all duration-1000 opacity-70 md:opacity-90"
             style={{
               color: visualState.active
                 ? visualState.active.themeColor
@@ -197,7 +215,8 @@ export default function App() {
             powerful beyond imagination."
           </h3>
           <p
-            className="text-[6px] md:text-xs font-bold tracking-[0.4em] transition-all duration-1000 opacity-30 md:opacity-50 uppercase"
+            // Changed opacity-30 md:opacity-50 to opacity-60 md:opacity-80
+            className="text-[6px] md:text-xs font-bold tracking-[0.4em] transition-all duration-1000 opacity-60 md:opacity-80 uppercase"
             style={{
               color: visualState.active
                 ? visualState.active.themeColor
