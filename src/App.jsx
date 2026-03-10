@@ -205,16 +205,17 @@ export default function App() {
             className="absolute inset-0 pointer-events-auto"
             style={{ transform: `translateX(${-visualState.x}px)` }}
           >
-            {/* Background Grid */}
-            <div className="absolute bottom-0 h-[800px] w-[10000px] bg-[#020617] bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:100px_100px] opacity-10" />
+            {/* Background Grid - Extended 2000px to the left! */}
+            <div className="absolute bottom-0 -left-[2000px] h-[800px] w-[12000px] bg-[#020617] bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:100px_100px] opacity-10" />
 
             {/* STREET LINE */}
             <div
               className="absolute w-[10000px] h-[60px]"
               style={{ top: GROUND_Y }}
             >
-              <div className="absolute inset-0 bg-slate-950 border-t-2 border-slate-800" />
-              <div className="absolute top-1/2 -translate-y-1/2 w-full h-1 bg-[linear-gradient(to_right,#334155_50%,transparent_50%)] bg-[length:60px_100%] opacity-30" />
+              {/* Visual Road Elements - Extended 2000px to the left */}
+              <div className="absolute top-0 bottom-0 -left-[2000px] w-[12000px] bg-slate-950 border-t-2 border-slate-800" />
+              <div className="absolute top-1/2 -translate-y-1/2 -left-[2000px] w-[12000px] h-1 bg-[linear-gradient(to_right,#334155_50%,transparent_50%)] bg-[length:60px_100%] opacity-30" />
 
               {/* Label Markers on the road */}
               {ASSETS.map((asset) => (
@@ -234,9 +235,9 @@ export default function App() {
                 </div>
               ))}
 
-              {/* Top glowing edge of the road */}
+              {/* Top glowing edge of the road - Extended 2000px to the left */}
               <div
-                className="absolute top-0 w-full h-[1px] transition-all duration-1000"
+                className="absolute top-0 -left-[2000px] w-[12000px] h-[1px] transition-all duration-1000"
                 style={{
                   backgroundColor: visualState.active
                     ? visualState.active.themeColor
