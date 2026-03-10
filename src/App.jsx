@@ -308,13 +308,58 @@ export default function App() {
                 </div>
               );
             })}
+
+            {/* FINISH LINE */}
+            <div
+              className="absolute w-12 h-[60px] opacity-80 border-l border-r border-white/20"
+              style={{
+                left: WORLD_WIDTH,
+                top: GROUND_Y,
+                backgroundImage:
+                  "conic-gradient(#fff 90deg, #020617 90deg 180deg, #fff 180deg 270deg, #020617 270deg)",
+                backgroundSize: "16px 16px",
+              }}
+            />
+
+            {/* GLOWING FLAG POLE */}
+            <div
+              className="absolute w-1.5 h-[180px] bg-gradient-to-t from-slate-700 to-white rounded-t-full shadow-[0_0_15px_rgba(255,255,255,0.8)]"
+              style={{
+                left: WORLD_WIDTH + 24, // Centered on the blocks
+                top: GROUND_Y - 180, // Sticks up from the ground
+              }}
+            >
+              {/* THE GLOWING PENNANT (FLAG) */}
+              <div
+                className="absolute top-2 left-1.5 w-20 h-10 bg-yellow-400"
+                style={{
+                  boxShadow:
+                    "0 0 25px rgba(250, 204, 21, 0.9), inset 0 0 8px rgba(255,255,255,0.8)",
+                  clipPath: "polygon(0 0, 100% 0, 75% 50%, 100% 100%, 0 100%)", // Creates a cool cutout shape
+                }}
+              />
+            </div>
+
+            <div
+              className="absolute font-mono font-black italic uppercase md:text-3xl text-xl tracking-[0.4em]"
+              style={{
+                left: WORLD_WIDTH + 24,
+                top: GROUND_Y - 220, // Moved up to sit above the flag!
+                transform: "translateX(-50%)",
+                color: "white",
+                textShadow: "0 0 20px rgba(255,255,255,0.8)",
+              }}
+            >
+              FINISH
+            </div>
           </div>
 
           <Player
             x={visualState.playerScreenX}
             y={visualState.y}
             isJumping={visualState.isJumping}
-            activeColor={visualState.active?.themeColor} // Add this line!
+            activeColor={visualState.active?.themeColor}
+            isFinished={visualState.progress >= 90} // Tell the player they finished!
           />
         </div>
 
