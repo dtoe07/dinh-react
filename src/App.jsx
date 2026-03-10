@@ -322,7 +322,7 @@ export default function App() {
 
                 <div className="flex flex-col md:flex-row md:flex-wrap items-start md:items-baseline gap-x-12 gap-y-2 md:gap-y-4 pt-2">
                   {visualState.active.type === "school" ? (
-                    <>
+                    <div className="flex flex-col gap-3 md:gap-4 max-w-full md:max-w-4xl">
                       <span
                         className="text-xl md:text-3xl font-black font-mono tracking-tighter transition-all duration-1000 uppercase"
                         style={{
@@ -332,7 +332,15 @@ export default function App() {
                       >
                         {visualState.active.details.degree}
                       </span>
-                      <div className="flex flex-wrap gap-3 md:gap-8">
+
+                      {/* ADD THIS NEW DESCRIPTION BLOCK */}
+                      {visualState.active.details.description && (
+                        <p className="text-xs md:text-sm font-medium text-white/70 leading-relaxed">
+                          {visualState.active.details.description}
+                        </p>
+                      )}
+
+                      <div className="flex flex-wrap gap-3 md:gap-8 mt-1">
                         {visualState.active.details.highlights.map((h, i) => (
                           <span
                             key={i}
@@ -348,7 +356,7 @@ export default function App() {
                           </span>
                         ))}
                       </div>
-                    </>
+                    </div>
                   ) : (
                     <>
                       <div className="flex flex-col gap-3 max-w-full md:max-w-4xl">
