@@ -1,0 +1,68 @@
+import { GraduationCap, Bot, Activity, Leaf } from "lucide-react";
+
+export const ASSETS = [
+  {
+    id: "psu",
+    type: "school",
+    name: "Portland State University",
+    icon: GraduationCap,
+    x: 600,
+    width: 300,
+    height: 180,
+    themeColor: "rgb(16,185,129)",
+    bgGradient: "from-emerald-950/60",
+    details: {
+      degree: "B.S. in Computer Science",
+      highlights: [
+        "Software Engineering",
+        "Dean's List 2022-2024",
+        "Lead Web Dev",
+      ],
+    },
+  },
+  {
+    id: "proj1",
+    type: "project",
+    name: "AI Chat System",
+    icon: Bot,
+    x: 1300,
+    width: 250,
+    height: 160,
+    themeColor: "rgb(59,130,246)",
+    bgGradient: "from-blue-950/60",
+    details: {
+      description: "Real-time AI interface with Gemini API integration.",
+      tech: ["React", "Tailwind", "Node.js"],
+    },
+  },
+  {
+    id: "proj2",
+    type: "project",
+    name: "Neural Map",
+    icon: Activity,
+    x: 2100,
+    width: 280,
+    height: 200,
+    themeColor: "rgb(168,85,247)",
+    bgGradient: "from-purple-950/60",
+    details: {
+      description: "3D Visualizer for neurological datasets.",
+      tech: ["Three.js", "Python", "D3.js"],
+    },
+  },
+  {
+    id: "proj3",
+    type: "project",
+    name: "Eco Tracker",
+    icon: Leaf,
+    x: 3000,
+    width: 250,
+    height: 140,
+    themeColor: "rgb(249,115,22)",
+    bgGradient: "from-orange-950/60",
+    details: {
+      description: "Tracking carbon footprints via community data.",
+      tech: ["React Native", "Firebase"],
+    },
+  },
+];
