@@ -13,7 +13,7 @@ import {
   PLAYER_WIDTH,
 } from "./config/physics";
 import { ASSETS } from "./data/assets";
-import { ArrowLeft, ArrowRight, ArrowUp } from "lucide-react"; // Import icons for buttons
+import { ArrowLeft, ArrowRight, ArrowUp, Github } from "lucide-react"; // Added Github import
 
 export default function App() {
   const stateRef = useRef({
@@ -164,6 +164,37 @@ export default function App() {
           } to-transparent pointer-events-none`}
         />
 
+        {/* INSPIRATIONAL QUOTE OVERLAY (Inside wrapper so player is in front, but counter-translates to stay safely below the site title!) */}
+        <div className="absolute top-24 md:top-28 left-1/2 w-[85%] md:w-[60%] max-w-4xl -translate-x-1/2 text-center pointer-events-none flex flex-col gap-1 md:gap-2 z-0 transition-transform duration-500 translate-y-[20vh] md:translate-y-0">
+          <h3
+            className="text-[8px] md:text-sm lg:text-lg font-black font-mono uppercase tracking-widest leading-normal transition-all duration-1000 opacity-20 md:opacity-30"
+            style={{
+              color: visualState.active
+                ? visualState.active.themeColor
+                : "#f97316",
+              textShadow: `0 0 20px ${
+                visualState.active
+                  ? visualState.active.themeColor
+                  : "rgba(249, 115, 22, 0.5)"
+              }`,
+            }}
+          >
+            "Computers are incredibly fast, accurate, and stupid. Human beings
+            are incredibly slow, inaccurate, and brilliant. Together they are
+            powerful beyond imagination."
+          </h3>
+          <p
+            className="text-[6px] md:text-xs font-bold tracking-[0.4em] transition-all duration-1000 opacity-30 md:opacity-50 uppercase"
+            style={{
+              color: visualState.active
+                ? visualState.active.themeColor
+                : "#f97316",
+            }}
+          >
+            - Albert Einstein
+          </p>
+        </div>
+
         {/* GAME SCENE CAMERA - Zooms out physical elements on mobile */}
         <div
           className="absolute inset-0 md:scale-100 scale-[0.55] transition-transform duration-500"
@@ -264,6 +295,7 @@ export default function App() {
             x={visualState.playerScreenX}
             y={visualState.y}
             isJumping={visualState.isJumping}
+            activeColor={visualState.active?.themeColor} // Add this line!
           />
         </div>
 
@@ -319,16 +351,39 @@ export default function App() {
                     </>
                   ) : (
                     <>
-                      <span
-                        className="text-lg md:text-3xl font-bold font-mono tracking-tighter transition-all duration-1000 max-w-full md:max-w-4xl leading-tight"
-                        style={{
-                          color: visualState.active.themeColor,
-                          textShadow: `0 0 8px ${visualState.active.themeColor}`,
-                        }}
-                      >
-                        {visualState.active.details.description}
-                      </span>
-                      <div className="flex flex-wrap gap-2 md:gap-4 mt-2 md:mt-0">
+                      <div className="flex flex-col gap-3 max-w-full md:max-w-4xl">
+                        <span
+                          className="text-lg md:text-3xl font-bold font-mono tracking-tighter transition-all duration-1000 leading-tight"
+                          style={{
+                            color: visualState.active.themeColor,
+                            textShadow: `0 0 8px ${visualState.active.themeColor}`,
+                          }}
+                        >
+                          {visualState.active.details.description}
+                        </span>
+
+                        {/* GITHUB LINK BUTTON */}
+                        {visualState.active.details.github && (
+                          <a
+                            href={visualState.active.details.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="pointer-events-auto inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-white/5 hover:bg-white/20 border border-white/20 rounded-lg text-[10px] md:text-xs font-black uppercase tracking-widest text-white transition-all w-fit backdrop-blur-sm"
+                            style={{
+                              borderColor: visualState.active.themeColor,
+                              boxShadow: `0 0 10px ${visualState.active.themeColor}30`,
+                            }}
+                          >
+                            <Github
+                              className="w-4 h-4"
+                              style={{ color: visualState.active.themeColor }}
+                            />
+                            View Source Code
+                          </a>
+                        )}
+                      </div>
+
+                      <div className="flex flex-wrap gap-2 md:gap-4 mt-2 md:mt-2 w-full">
                         {visualState.active.details.tech.map((t, i) => (
                           <span
                             key={i}

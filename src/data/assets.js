@@ -15,8 +15,8 @@ export const ASSETS = [
       degree: "B.S. in Computer Science",
       highlights: [
         "Software Engineering",
-        "Dean's List 2022-2024",
-        "Lead Web Dev",
+        "Graduated 2025",
+        "Data Structures & Algorithms",
       ],
     },
   },
@@ -33,6 +33,7 @@ export const ASSETS = [
     details: {
       description: "Real-time AI interface with Gemini API integration.",
       tech: ["React", "Tailwind", "Node.js"],
+      github: "https://github.com/USERNAME/ai-chat-system",
     },
   },
   {
@@ -48,6 +49,7 @@ export const ASSETS = [
     details: {
       description: "3D Visualizer for neurological datasets.",
       tech: ["Three.js", "Python", "D3.js"],
+      github: "https://github.com/USERNAME/neural-map",
     },
   },
   {
@@ -63,6 +65,7 @@ export const ASSETS = [
     details: {
       description: "Tracking carbon footprints via community data.",
       tech: ["React Native", "Firebase"],
+      github: "https://github.com/USERNAME/eco-tracker",
     },
   },
 ];
