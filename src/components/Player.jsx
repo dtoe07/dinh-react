@@ -102,7 +102,7 @@ export default function Player({ x, y, isJumping, activeColor, isFinished }) {
             />
           </div>
 
-          {/* FINISH MODE - CSS mouth/smile if completed */}
+          {/* FINISH MODE - CSS smile if completed */}
           {isFinished && (
             <div
               className="absolute bottom-2 left-1/2 -translate-x-1/2 w-4 h-2 rounded-b-full border-b-2 transition-all duration-300"
