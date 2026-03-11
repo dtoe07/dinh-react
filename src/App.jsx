@@ -205,7 +205,7 @@ export default function App() {
         />
 
         {/* INSPIRATIONAL QUOTE OVERLAY (Inside wrapper so player is in front, but counter-translates to stay safely below the site title!) */}
-        <div className="absolute top-24 md:top-28 left-1/2 w-[85%] md:w-[60%] max-w-4xl -translate-x-1/2 text-center pointer-events-none flex flex-col gap-1 md:gap-2 z-0 transition-transform duration-500 translate-y-[20vh] md:translate-y-0">
+        <div className="absolute top-36 md:top-28 left-1/2 w-[85%] md:w-[60%] max-w-4xl -translate-x-1/2 text-center pointer-events-none flex flex-col gap-1 md:gap-2 z-0 transition-transform duration-500 translate-y-[20vh] md:translate-y-0">
           <h3
             // Changed opacity-20 md:opacity-30 to opacity-70 md:opacity-90 for high readability
             className="text-[8px] md:text-sm lg:text-lg font-black font-mono uppercase tracking-widest leading-normal transition-all duration-1000 opacity-70 md:opacity-90"
@@ -502,29 +502,45 @@ export default function App() {
       </div>
       {/* ----- END OF WORLD WRAPPER ----- */}
 
-      {/* SITE TITLE (Placed outside wrapper so it stays perfectly at the top margin) */}
-      <div
-        className="absolute top-8 left-6 md:left-12 z-[100] cursor-pointer pointer-events-auto"
-        onClick={() => window.location.reload()}
-      >
-        <h1
-          className="text-lg md:text-2xl font-black italic uppercase tracking-widest transition-all duration-1000"
-          style={{
-            color: visualState.active
-              ? visualState.active.themeColor
-              : "#f97316", // Starts orange (#f97316 text-orange-500)
-            textShadow: `0 0 12px ${
-              visualState.active
+      {/* SITE TITLE & NAVIGATION (Placed outside wrapper so it stays perfectly at the top margin) */}
+      <div className="absolute top-7 md:top-8 left-6 md:left-12 z-[100] flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-6 pointer-events-auto">
+        <div
+          className="cursor-pointer"
+          onClick={() => window.location.reload()}
+        >
+          <h1
+            className="text-lg md:text-2xl font-black italic uppercase tracking-widest transition-all duration-1000"
+            style={{
+              color: visualState.active
                 ? visualState.active.themeColor
-                : "rgba(249, 115, 22, 0.5)"
-            }`,
+                : "#f97316",
+              textShadow: `0 0 12px ${
+                visualState.active
+                  ? visualState.active.themeColor
+                  : "rgba(249, 115, 22, 0.5)"
+              }`,
+            }}
+          >
+            Dinh Nguyen{" "}
+            <span className="text-white/70 transition-colors duration-1000">
+              Portfolio
+            </span>
+          </h1>
+        </div>
+
+        {/* --- OFFICIAL SITE BUTTON MOVED TO TOP --- */}
+        <button
+          className="h-8 px-3 md:h-10 md:px-4 bg-white/5 active:bg-white/20 backdrop-blur-md rounded-full border border-white/20 flex items-center justify-center gap-1.5 md:gap-2 text-white/70 transition-all duration-300 hover:border-orange-500 hover:text-orange-400 hover:shadow-[0_0_20px_rgba(249,115,22,0.8)] hover:bg-orange-500/10 active:shadow-[0_0_30px_rgba(249,115,22,1)]"
+          onClick={(e) => {
+            e.preventDefault();
+            window.location.href = "https://dtoe07.github.io/";
           }}
         >
-          Dinh Nguyen{" "}
-          <span className="text-white/70 transition-colors duration-1000">
-            Portfolio
+          <Globe className="w-3 h-3 md:w-4 md:h-4" />
+          <span className="text-[8px] md:text-[9px] font-black uppercase tracking-widest mt-0.5">
+            Go Home
           </span>
-        </h1>
+        </button>
       </div>
 
       {/* WORLD PROGRESS TRACKER (Top Right) */}
@@ -584,20 +600,6 @@ export default function App() {
             <ArrowRight className="w-8 h-8" />
           </button>
         </div>
-
-        {/* --- NEW OFFICIAL SITE BUTTON --- */}
-        <button
-          className="h-16 px-5 bg-white/10 active:bg-white/30 backdrop-blur-md rounded-full border border-white/20 flex items-center justify-center gap-2 text-white/70 transition-all duration-300 hover:border-orange-500 hover:text-orange-400 hover:shadow-[0_0_20px_rgba(249,115,22,0.8)] hover:bg-orange-500/10 active:shadow-[0_0_30px_rgba(249,115,22,1)]"
-          onClick={(e) => {
-            e.preventDefault();
-            window.location.href = "https://dtoe07.github.io/";
-          }}
-        >
-          <Globe className="w-5 h-5" />
-          <span className="text-[10px] font-black uppercase tracking-widest mt-0.5">
-            Go Home
-          </span>
-        </button>
 
         <button
           className="w-16 h-16 bg-indigo-500/20 active:bg-indigo-500/50 backdrop-blur-md rounded-full border border-indigo-500/50 flex items-center justify-center text-indigo-300 shadow-[0_0_15px_rgba(99,102,241,0.3)]"
