@@ -2,7 +2,7 @@
 
 An interactive portfolio site built with React and Vite, designed like a side-scrolling platformer where users explore projects and experience by moving through a game world.
 
----
+Live Demo: [View My Portfolio Site](https://dtoe07.github.io/dinh-react/)
 
 # Tech Stack
 
