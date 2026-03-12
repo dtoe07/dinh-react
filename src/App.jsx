@@ -496,6 +496,79 @@ export default function App() {
                   )}
                 </div>
               </div>
+            ) : visualState.progress < 5 ? (
+              /* MOBILE ONBOARDING ARROWS: Disappears once the player starts moving past 5% */
+              <div className="md:hidden flex flex-col items-center mt-24 transition-opacity duration-300">
+                <style>
+                  {`
+                    @keyframes chase-light {
+                      0%, 100% { opacity: 0.15; filter: drop-shadow(0 0 0 rgba(255,255,255,0)); }
+                      50% { opacity: 1; filter: drop-shadow(0 0 15px rgba(255,255,255,1)); transform: translateY(8px); }
+                    }
+                    .animate-chase-1 { animation: chase-light 1.8s infinite 0s; }
+                    .animate-chase-2 { animation: chase-light 1.8s infinite 0.3s; }
+                    .animate-chase-3 { animation: chase-light 1.8s infinite 0.6s; }
+                  `}
+                </style>
+
+                <span
+                  className="text-white text-xs font-extrabold whitespace-nowrap uppercase tracking-widest mb-4 animate-pulse"
+                  style={{
+                    textShadow:
+                      "0 0 15px rgba(255,255,255,1), 0 0 30px rgba(255,255,255,0.8)",
+                  }}
+                >
+                  Use the arrow buttons below to move me
+                </span>
+
+                <div className="flex flex-col items-center -space-y-3">
+                  <svg
+                    width="100"
+                    height="35"
+                    viewBox="0 0 100 35"
+                    fill="none"
+                    stroke="currentColor"
+                    className="text-white/70 animate-chase-1"
+                  >
+                    <polyline
+                      points="10,5 50,30 90,5"
+                      strokeWidth="8"
+                      strokeLinecap="round"
+                      strokeLinejoin="miter"
+                    />
+                  </svg>
+                  <svg
+                    width="100"
+                    height="35"
+                    viewBox="0 0 100 35"
+                    fill="none"
+                    stroke="currentColor"
+                    className="text-white/70 animate-chase-2"
+                  >
+                    <polyline
+                      points="10,5 50,30 90,5"
+                      strokeWidth="8"
+                      strokeLinecap="round"
+                      strokeLinejoin="miter"
+                    />
+                  </svg>
+                  <svg
+                    width="100"
+                    height="35"
+                    viewBox="0 0 100 35"
+                    fill="none"
+                    stroke="currentColor"
+                    className="text-white/70 animate-chase-3"
+                  >
+                    <polyline
+                      points="10,5 50,30 90,5"
+                      strokeWidth="8"
+                      strokeLinecap="round"
+                      strokeLinejoin="miter"
+                    />
+                  </svg>
+                </div>
+              </div>
             ) : null}
           </div>
         </div>
