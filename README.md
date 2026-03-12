@@ -1,4 +1,4 @@
-# Neon Runner Portfolio (React + Vite)
+# Dinh Nguyen Neon Runner Portfolio (React + Vite)
 
 An interactive portfolio site built with React and Vite, designed like a side-scrolling platformer where users explore projects and experience by moving through a game world.
 
