@@ -611,7 +611,7 @@ export default function App() {
         >
           <Globe className="w-3 h-3 md:w-4 md:h-4" />
           <span className="text-[8px] md:text-[9px] font-black uppercase tracking-widest mt-0.5">
-            Go Home
+            To My Full Portfolio Site
           </span>
         </button>
       </div>
